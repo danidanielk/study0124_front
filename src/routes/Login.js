@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { Cookies } from "react-cookie";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -24,14 +25,28 @@ function Login() {
       .post("http://localhost:8080/login", logindata, {
         headers: { "Content-Type": "application/json" },
       })
+
+      // .then((res) => res.json())
+      // .then((token) => {
+      //   localStorage.setItem("jwt", token.accessToken);
+      // })
+
       .then((response) => {
-        console.log(response);
-        window.location.assign("/");
+        const token = response.data;
+        const cookies = new Cookies();
+        cookies.set("token", token, {
+          maxAge: 1000 * 60 * 60 * 24 * 7,
+          path: "/",
+        });
+        console.log(cookies);
+
+        window.location.assign("/home");
       })
 
       .catch((error) => {
         alert("id,pw 확인");
-        console.log(error);
+        console.log(error.HttpStatusCode);
+        // console.log(error);
       });
   };
 
