@@ -1,8 +1,8 @@
 import Footer from "../component/Footer";
 import Header from "../component/Header";
-import HomeComponent from "../component/HomeComponent";
+import PostComponent from "../component/PostComponent";
 
-function Home() {
+function Post() {
   return (
     <>
       <div className="max-w-2xl mx-auto ">
@@ -11,7 +11,7 @@ function Home() {
           <Header />
           {/*  */}
 
-          <HomeComponent />
+          <PostComponent />
         </div>
 
         {/*  */}
@@ -21,4 +21,4 @@ function Home() {
     </>
   );
 }
-export default Home;
+export default Post;
